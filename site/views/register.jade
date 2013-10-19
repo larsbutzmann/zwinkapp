@@ -1,0 +1,21 @@
+!!!5
+html
+  head
+    include includes/head
+    include includes/scripts
+
+  body
+    div(data-role="page")
+      div(data-role="header")
+        a(href="/login", data-role="button", data-icon="arrow-l", data-iconpos="notext", data-theme="a", data-inline="true")
+        h1 Register
+      div(data-role="content")
+        form(action="/register", method="post", data-ajax="false")
+          label(for="username") Name:
+          input(type="text", name="username", id="username", value="")
+          label(for="password") Passwort:
+          input(type="password", name="password", id="password", value="")
+          label(for="password_confirmation") Passwort bestätigen:
+          input(type="password", name="password_confirmation", id="password_confirmation", value="")
+
+          input(type="submit", value="Benutzer anlegen")

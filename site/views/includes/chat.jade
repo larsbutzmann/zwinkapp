@@ -1,0 +1,9 @@
+div(data-role="page", id="chat")
+  div(data-role="content")
+    div#chat-textfield
+      form(action="/chat/message", method="post")
+        input(type="text", name="text", id="text", value="")
+        input(type="submit", value="Send", data-theme="b")
+    div#conversation
+
+  include footer
