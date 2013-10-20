@@ -1,5 +1,5 @@
 var passport = require('passport'),
-  UserModel = require('./model/user.js')
+  UserModel = require('./model/user.js'),
   api = require("./api.js");
 
 module.exports = function (app) {
@@ -10,6 +10,8 @@ module.exports = function (app) {
   }
 
   app.get('/', ensureAuthenticated, function (req, res) {
+    res.cookie("userName", req.user.username);
+    res.cookie("userId", req.user._id);
     res.render('index', {
       user: req.user
     });
@@ -53,6 +55,8 @@ module.exports = function (app) {
   );
 
   app.get('/logout', function(req, res) {
+    res.clearCookie('userName');
+    res.clearCookie('userId');
     req.logout();
     res.redirect('/');
   });
@@ -67,4 +71,4 @@ module.exports = function (app) {
   // app.put('/api/notes/:id', api.updateNote);
   // app.delete('/api/notes/:id', api.deleteNote);
 
-}
+};

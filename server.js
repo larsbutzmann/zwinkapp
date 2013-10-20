@@ -12,9 +12,12 @@ var application_root = __dirname,
     passport = require('passport'),
     jade = require('jade'),
     http = require('http'),
+    socketIo = require("socket.io"),
     LocalStrategy = require('passport-local').Strategy;
 
-var app = express();
+var app = express(),
+  server = http.createServer(app),
+  io = socketIo.listen(server);
 
 // Configure server
 app.configure(function() {
@@ -58,6 +61,9 @@ passport.deserializeUser(UserModel.deserializeUser());
 // Setup routes
 require("./routes")(app);
 
+// Setup chat
+require("./chat")(io);
+
 function startKeepAlive() {
     setInterval(function() {
         var options = {
@@ -83,6 +89,6 @@ function startKeepAlive() {
 startKeepAlive();
 
 var port = process.env.PORT || 5000;
-app.listen(port, function() {
+server.listen(port, function() {
   console.log("Listening on " + port);
 });
