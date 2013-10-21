@@ -11,6 +11,7 @@ var application_root = __dirname,
     mongoose = require('mongoose'),
     passport = require('passport'),
     jade = require('jade'),
+    flash = require('connect-flash'),
     http = require('http'),
     socketIo = require("socket.io"),
     LocalStrategy = require('passport-local').Strategy;
@@ -26,14 +27,15 @@ app.configure(function() {
   app.use(express.static(__dirname + '/site'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
-  app.locals.pretty = true;
-  app.use(expressValidator());
-  app.use(express.session({ secret: 'keyboard cat' }));
+  app.use(express.session({ cookie: {maxAge: 6000000 }, secret: "keyboard cat"}));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(flash());
+  app.use(expressValidator());
   // app.use(express.logger());
   app.use(express.methodOverride());
   app.use(app.router);
+  app.locals.pretty = true;
   //Show all errors in development
   // app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 });

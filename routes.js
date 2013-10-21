@@ -23,7 +23,7 @@ module.exports = function (app) {
 
   app.post('/register', function(req, res) {
     req.assert('username', 'Username is required').notEmpty();
-    req.assert('password', 'Password is too short').len(6, 20);
+    req.assert('password', 'Password is too short').len(4, 20);
     req.assert('password', 'Passwords do not match').equals(req.body.password_confirmation);
 
     var errors = req.validationErrors();
@@ -44,13 +44,13 @@ module.exports = function (app) {
   });
 
   app.get('/login', function(req, res) {
-    res.render('login', {});
+    res.render('login', { message: req.flash('error') });
   });
 
   app.post('/login', passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/login',
-      failureFlash: true
+      failureFlash: true // 'Invalid username or password.'
     })
   );
 

@@ -4,7 +4,12 @@ socket.on('message', function (data) {
 });
 
 function addMessage(data) {
-  var message = "<p><strong>" + data.userName + "</strong>:" + data.text + "</p>";
+  var message;
+  if (data.userName !== $.cookie("userName")) {
+    message = "<div class='bubbledLeft'><strong class='message-space'>" + data.userName + ":</strong>" + data.text + "</div>";
+  } else {
+    message = "<div class='bubbledRight'>" + data.text + "</div>";
+  }
   $("#conversation").append(message);
 }
 

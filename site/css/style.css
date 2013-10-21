@@ -1,5 +1,5 @@
 img {
-    width: 100%;
+    width: 95%;
 }
 
 #username-field {
@@ -11,8 +11,8 @@ img {
     padding: 3px 5px 3px 5px;
     max-width: 80%;
     clear: both;
-    border: 1px solid grey;
-}
+/*    border: 1px solid grey;
+*/}
 
 .bubbledLeft {
     float: left;
@@ -23,4 +23,20 @@ img {
     float: right;
     margin-left: auto;
     text-align: right;
+}
+
+.message-space {
+    margin-right: 1em;
+}
+
+#chat-textfield {
+    clear: both;
+}
+
+.center-wrapper {
+    text-align: center;
+}
+
+.center-wrapper * {
+    margin: 0 auto;
 }

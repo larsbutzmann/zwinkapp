@@ -15,7 +15,6 @@ exports.writeMessages = function(data) {
     });
 };
 
-
 exports.getMessages = function(request, response) {
     return MessageModel.find(function(err, data) {
         if (!err) {
