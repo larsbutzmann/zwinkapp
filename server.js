@@ -27,7 +27,7 @@ app.configure(function() {
   app.use(express.static(__dirname + '/site'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
-  app.use(express.session({ cookie: {maxAge: 6000000 }, secret: "keyboard cat"}));
+  app.use(express.session({ cookie: {maxAge: 86400000 }, secret: "keyboard cat"}));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());

@@ -16,8 +16,8 @@ html
           input(type="password", name="password", id="password", value="")
 
           - if (message)
-            p #{message}
+            p.alarm #{message}
 
-          input(type="submit", value="Login", data-theme="b")
+          input(type="submit", value="Login", data-theme="b", data-transition="slideup")
         br
         a(href="/register", data-role="button", data-theme="e", rel="external") Neu hier?

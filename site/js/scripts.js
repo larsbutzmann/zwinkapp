@@ -15,6 +15,14 @@ function addMessage(data) {
 
 $( document ).ready(function() {
 
+  $(".chat-menu").click(function() {
+    if (window.location.hash === "") {
+      $(this).removeAttr('data-direction');
+    } else {
+      $(this).attr('data-direction','reverse');
+    }
+  });
+
   $.ajax({
       type: 'GET',
       dataType: 'json',
